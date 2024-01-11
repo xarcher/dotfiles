@@ -1,0 +1,7 @@
+import = ["~/.config/alacritty/themes/github_dark_dimmed.toml"]
+
+live_config_reload = true
+
+[cursor]
+style = "Beam"
+
