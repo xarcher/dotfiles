@@ -1,0 +1,33 @@
+# Theme
+theme = tokyonight_storm
+background-opacity = 0.95
+
+# Font
+font-family = "JetBrains Mono"
+font-size = 12
+
+# Appearance
+gtk-titlebar = false
+gtk-single-instance = true
+gtk-tabs-location = top
+gtk-wide-tabs = false
+#window-padding-y = 50,0
+#window-padding-x = 50,0
+window-padding-balance = true
+window-decoration = false
+
+# Other
+mouse-hide-while-typing = true
+copy-on-select = clipboard
+shell-integration-features = cursor,sudo,no-title
+confirm-close-surface = false
+
+# Configuration Management
+keybind = ctrl+comma=open_config
+keybind = ctrl+shift+comma=reload_config
+
+# Auto-update Ghostty when a new release is available.
+auto-update = download
+ 
+# gpg pinentry freaks out if $TERM is not set
+term = xterm-256color
