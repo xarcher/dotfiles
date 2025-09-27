@@ -1,0 +1,100 @@
+" -----------------------------------
+" SPC f -> file/project
+" SPC b -> buffer/tab
+" SPC w -> window/split
+" SPC g -> git
+" SPC c -> code (refactor, reformat, comment…)
+" SPC m -> motion (EasyMotion / AceJump)
+" SPC t -> tree/tool windows
+" SPC u -> users multiple cursors
+" -----------------------------------
+
+let mapleader=" "
+
+set scrolloff=15
+
+" Do incremental searching.
+set incsearch
+
+" Don't use Ex mode, use Q for formatting.
+map Q gq
+
+let mapleader=" "
+
+" Highlight copied text
+Plug 'machakann/vim-highlightedyank'
+" Commentary plugin
+Plug 'tpope/vim-commentary'
+
+
+set clipboard^=unnamedplus,unnamed
+
+set number relativenumber
+
+nmap <leader>ss <Action>(SearchEverywhere)
+nmap <leader>sr <Action>(ReplaceInPath)
+
+map <leader>c, <Action>(GotoNextError)
+map <leader>c. <Action>(GotoNextError)
+
+map <leader>cf <Action>(ReformatCode)
+map <leader>ci <Action>(OptimizeImports)
+
+" --- Setup NERDTree ---
+set NERDTree
+
+map <C-n> :NERDTreeToggle<CR>
+nmap <leader>pt  <Action>(ActivateProjectToolWindow)
+
+" --- End setup NERDTree ---
+
+" --- Setup WhichKey ---
+set which-key
+set notimeout " disable the timeout option
+set timeoutlen=5000 " increase the timeoutlen (default: 1000), don't add space around the equal sign
+" --- End setup WhichKey ---
+
+set easymotion
+" jump đến đầu từ
+map <leader>mw <Plug>(easymotion-w)
+" jump đến cuối từ
+map <leader>me <Plug>(easymotion-e)
+" jump lùi về đầu từ
+map <leader>mb <Plug>(easymotion-b)
+
+" jump ký tự trong dòng
+map <leader>mf <Plug>(easymotion-f)
+" jump tới trước ký tự trong dòng
+map <leader>mt <Plug>(easymotion-t)
+" jump ký tự trong toàn màn hình
+map <leader>ms <Plug>(easymotion-s) 
+
+" jump xuống dòng bất kỳ
+map <leader>mj <Plug>(easymotion-j)
+" jump lên dòng bất kỳ
+map <leader>mk <Plug>(easymotion-k)
+"--- End setup EasyMotion ---
+
+" --- Setup vim-commentary ---
+" --- End setup vim-commentary ---
+
+" --- Surround plugin ---
+" ys{motion}{char}    # Thêm ký tự bao quanh đối tượng motion; ví dụ: ysiw" → "word"
+" yss{char}           # Thêm ký tự bao quanh cả dòng; ví dụ: yss( → (line content)
+" ds{char}            # Xóa ký tự bao quanh; ví dụ: ds" → xóa quotes quanh từ
+" cs{old}{new}        # Thay ký tự bao quanh cũ bằng ký tự mới; ví dụ: cs"' → "word" → 'word'
+" ysiW{char}          # Thêm surround quanh WORD; ví dụ: ysiW( → (WORD)
+" ysip{char}          # Thêm surround quanh paragraph; ví dụ: ysip" → "paragraph..."
+" v{motion} S{char}   # Trong visual mode, thêm surround quanh selection; ví dụ: vaw S" → "word"
+" aw/iw               # motion: a word / inner word; ví dụ: ysiw" → "word"
+" ap/ip               # motion: a paragraph / inner paragraph; ví dụ: ysip' → 'paragraph'
+" al/il               # motion: a line / inner line; ví dụ: ysil( → (line)
+" .                   # Lặp lại thao tác surround trước đó
+
+set surround
+" --- End Surround plugin ---
+
+" --- Setup Multiple Cursors ---
+set multiple-cursors
+
+"--- End Setup Multiple Cursors ---
