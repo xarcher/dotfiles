@@ -11,6 +11,7 @@
 
 let mapleader=" "
 
+set showmode
 set scrolloff=15
 
 " Do incremental searching.
@@ -19,19 +20,20 @@ set incsearch
 " Don't use Ex mode, use Q for formatting.
 map Q gq
 
-let mapleader=" "
+Plug 'machakann/vim-highlightedyank' " Highlight copied text
+Plug 'tpope/vim-commentary' " Commentary plugin
 
-" Highlight copied text
-Plug 'machakann/vim-highlightedyank'
-" Commentary plugin
-Plug 'tpope/vim-commentary'
-
-
+" Setup clipboard and keep Ctl+c, Ctl+v behavior
 set clipboard^=unnamedplus,unnamed
+nmap <C-c> :action $Copy<CR>
+vmap <C-c> :action $Copy<CR>
+imap <C-c> <Esc>:action $Copy<CR>a
+nmap <C-v> :action $Paste<CR>
+vmap <C-v> :action $Paste<CR>
+imap <C-v> <Esc>:action $Paste<CR>a
 
 set number relativenumber
 
-nmap <leader>ss <Action>(SearchEverywhere)
 nmap <leader>sr <Action>(ReplaceInPath)
 
 map <leader>c, <Action>(GotoNextError)
@@ -39,6 +41,24 @@ map <leader>c. <Action>(GotoNextError)
 
 map <leader>cf <Action>(ReformatCode)
 map <leader>ci <Action>(OptimizeImports)
+
+map <leader>a <Action>(Annotate)
+
+map <leader>b <Action>(ToggleLineBreakpoint)
+map <leader>o <Action>(FileStructurePopup)
+map <leader>z <Action>(ToggleDistractionFreeMode)
+map <leader>d <Action>(Debug)
+map <leader>r <Action>(Run)
+
+
+map gd <Action>(GotoDeclaration)
+map gi <Action>(GotoImplementation)
+map gd <Action>(GotoTypeDeclaration)
+map gf <Action>(GotoFile)
+map gb <Action>(Back)
+
+nnoremap <TAB> :action PreviousTab<CR>
+nnoremap <S-TAB> :action NextTab<CR>
 
 " --- Setup NERDTree ---
 set NERDTree
@@ -55,41 +75,8 @@ set timeoutlen=5000 " increase the timeoutlen (default: 1000), don't add space a
 " --- End setup WhichKey ---
 
 set easymotion
-" jump đến đầu từ
-map <leader>mw <Plug>(easymotion-w)
-" jump đến cuối từ
-map <leader>me <Plug>(easymotion-e)
-" jump lùi về đầu từ
-map <leader>mb <Plug>(easymotion-b)
-
-" jump ký tự trong dòng
-map <leader>mf <Plug>(easymotion-f)
-" jump tới trước ký tự trong dòng
-map <leader>mt <Plug>(easymotion-t)
-" jump ký tự trong toàn màn hình
-map <leader>ms <Plug>(easymotion-s) 
-
-" jump xuống dòng bất kỳ
-map <leader>mj <Plug>(easymotion-j)
-" jump lên dòng bất kỳ
-map <leader>mk <Plug>(easymotion-k)
-"--- End setup EasyMotion ---
-
-" --- Setup vim-commentary ---
-" --- End setup vim-commentary ---
-
-" --- Surround plugin ---
-" ys{motion}{char}    # Thêm ký tự bao quanh đối tượng motion; ví dụ: ysiw" → "word"
-" yss{char}           # Thêm ký tự bao quanh cả dòng; ví dụ: yss( → (line content)
-" ds{char}            # Xóa ký tự bao quanh; ví dụ: ds" → xóa quotes quanh từ
-" cs{old}{new}        # Thay ký tự bao quanh cũ bằng ký tự mới; ví dụ: cs"' → "word" → 'word'
-" ysiW{char}          # Thêm surround quanh WORD; ví dụ: ysiW( → (WORD)
-" ysip{char}          # Thêm surround quanh paragraph; ví dụ: ysip" → "paragraph..."
-" v{motion} S{char}   # Trong visual mode, thêm surround quanh selection; ví dụ: vaw S" → "word"
-" aw/iw               # motion: a word / inner word; ví dụ: ysiw" → "word"
-" ap/ip               # motion: a paragraph / inner paragraph; ví dụ: ysip' → 'paragraph'
-" al/il               # motion: a line / inner line; ví dụ: ysil( → (line)
-" .                   # Lặp lại thao tác surround trước đó
+map <leader>f <Plug>(easymotion-s)
+map <leader>e <Plug>(easymotion-f)
 
 set surround
 " --- End Surround plugin ---
